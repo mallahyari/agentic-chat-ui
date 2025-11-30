@@ -19,6 +19,7 @@ A modern, production-ready chat application built with the AG-UI protocol, featu
 ## 🏗️ Tech Stack
 
 ### Frontend
+
 - **React 18** - Modern React with hooks
 - **TypeScript** - Type-safe development
 - **Vite** - Lightning-fast build tool
@@ -27,6 +28,7 @@ A modern, production-ready chat application built with the AG-UI protocol, featu
 - **AG-UI Client SDK** - Protocol client implementation
 
 ### Backend
+
 - **FastAPI** - High-performance Python API framework
 - **AG-UI Python SDK** - Agent protocol server
 - **OpenAI API** - GPT-4 integration
@@ -215,13 +217,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [AG-UI Protocol](https://github.com/anthropics/agent-sdk) - Agent communication protocol
-- [shadcn/ui](https://ui.shadcn.com/) - Beautiful component library
-- [OpenAI](https://openai.com/) - AI model provider
-- [FastAPI](https://fastapi.tiangolo.com/) - Modern Python web framework
 
 ## 📧 Contact
 
