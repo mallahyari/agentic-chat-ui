@@ -17,11 +17,11 @@ export function ChatMessage({ message, isStreaming, isFirst }: ChatMessageProps)
 
     // Render user message
     if (isUser) {
-        if (isFirst) {
-            return (
-                <div className="max-w-3xl mx-auto px-4 py-6">
-                    <div className="bg-gray-50 rounded-xl px-6 py-4 border border-gray-100">
-                        <p className="text-gray-900 text-lg font-medium text-left">
+        return (
+            <div className="max-w-3xl mx-auto px-4 py-6">
+                <div className="flex">
+                    <div className="bg-gray-50 rounded-xl px-5 py-3 border border-gray-100 max-w-[85%]">
+                        <p className="text-gray-900 text-[15px]">
                             {typeof message.content === 'string'
                                 ? message.content
                                 : Array.isArray(message.content)
@@ -33,28 +33,8 @@ export function ChatMessage({ message, isStreaming, isFirst }: ChatMessageProps)
                         </p>
                     </div>
                 </div>
-            );
-        } else {
-            // Subsequent user messages
-            return (
-                <div className="max-w-3xl mx-auto px-4 py-6">
-                    <div className="flex justify-end">
-                        <div className="bg-gray-100 rounded-xl px-5 py-3 max-w-[80%]">
-                            <p className="text-gray-900 text-[15px]">
-                                {typeof message.content === 'string'
-                                    ? message.content
-                                    : Array.isArray(message.content)
-                                        ? message.content
-                                            .filter((item: any) => item.type === 'text')
-                                            .map((item: any) => item.text)
-                                            .join('')
-                                        : ''}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            );
-        }
+            </div>
+        );
     }
 
     // Render assistant response
@@ -167,7 +147,7 @@ export function ChatMessage({ message, isStreaming, isFirst }: ChatMessageProps)
 
                 {/* Answer section */}
                 <div className="prose prose-gray max-w-none text-left">
-                    <div className={`text-gray-800 text-[15px] leading-7`}>
+                    <div className={`text-gray-800 text-[15px] leading-7 ${isStreaming ? 'streaming-content' : ''}`}>
                         <ReactMarkdown>{content}</ReactMarkdown>
                     </div>
                 </div>

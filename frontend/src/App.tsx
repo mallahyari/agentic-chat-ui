@@ -23,8 +23,8 @@ function App() {
 					<div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
 						<div className="flex items-center gap-2">
 							<div className="text-xl font-semibold">
-								<span className="text-gray-900">perplexity</span>
-								<span className="text-teal-600">enterprise</span>
+								<span className="text-gray-900">Agentic </span>
+								<span className="text-teal-600">Chat UI</span>
 							</div>
 						</div>
 					</div>
@@ -52,8 +52,8 @@ function App() {
 						<div className="text-center">
 							<div className="mb-8">
 								<div className="text-4xl font-semibold mb-2">
-									<span className="text-gray-900">perplexity</span>
-									<span className="text-teal-600">enterprise</span>
+									<span className="text-gray-900">Agentic </span>
+									<span className="text-teal-600">Chat UI</span>
 								</div>
 							</div>
 						</div>
@@ -72,7 +72,7 @@ function App() {
 
 			{/* Input Area - Fixed at bottom */}
 			<div
-				className={`fixed bottom-0 left-0 right-0 bg-gradient-to-t from-white via-white/95 to-transparent pb-6 ${
+				className={`fixed bottom-0 left-0 right-0 bg-gradient-to-t from-white via-white/95 to-transparent pb-6 z-10 ${
 					hasMessages ? 'pt-20' : 'pt-0'
 				}`}
 			>

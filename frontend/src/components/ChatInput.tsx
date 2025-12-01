@@ -35,7 +35,7 @@ export function ChatInput({
 	return (
 		<div className={`w-full transition-all duration-300 ${hasMessages ? 'px-4 py-4' : 'px-4'}`}>
 			<div
-				className={`max-w-4xl mx-auto transition-all duration-300 ${
+				className={`max-w-3xl mx-auto transition-all duration-300 ${
 					hasMessages ? '' : 'mt-[35vh]'
 				}`}
 			>

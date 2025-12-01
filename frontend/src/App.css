@@ -41,25 +41,40 @@
 	color: #888;
 }
 
-/* Blinking cursor animation for streaming assistant messages */
-@keyframes blink-cursor {
-	0% {
-		opacity: 1;
-	}
-	50% {
+/* Smooth fade-in animation for streaming content */
+@keyframes streamIn {
+	from {
 		opacity: 0;
+		transform: translateY(4px);
 	}
-	100% {
+	to {
 		opacity: 1;
+		transform: translateY(0);
 	}
 }
 
-.cursor-blink {
-	display: inline-block;
-	width: 2px;
-	height: 1.15em;
-	background-color: #111827; /* gray-900 */
-	margin-left: 6px;
-	vertical-align: text-bottom;
-	animation: blink-cursor 1s step-start infinite;
+.streaming-content {
+	animation: streamIn 0.3s ease-out;
+}
+
+/* Fade in animation for steps */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Expand height animation for step timeline */
+@keyframes expandHeight {
+	from {
+		max-height: 0;
+	}
+	to {
+		max-height: 100%;
+	}
 }
