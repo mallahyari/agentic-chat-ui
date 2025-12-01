@@ -34,7 +34,7 @@ function App() {
 			{/* Main Content */}
 			<div className={`${hasMessages ? 'pt-0' : 'pt-16'}`}>
 				{hasMessages ? (
-					<div className="pb-50">
+					<div className="pb-60">
 						{messages.map((message, index) => (
 							<ChatMessage
 								key={`${message.role}-${index}`}
@@ -73,7 +73,7 @@ function App() {
 			{/* Input Area - Fixed at bottom */}
 			<div
 				className={`fixed bottom-0 left-0 right-0 bg-gradient-to-t from-white via-white/95 to-transparent pb-6 z-10 ${
-					hasMessages ? 'pt-20' : 'pt-0'
+					hasMessages ? 'pt-10' : 'pt-0'
 				}`}
 			>
 				<ChatInput

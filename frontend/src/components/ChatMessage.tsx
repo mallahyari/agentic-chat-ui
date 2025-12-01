@@ -3,9 +3,20 @@ import { Sparkles, Globe, List, FileText, Terminal, ChevronDown } from 'lucide-r
 import { TextShimmer } from '@/components/ui/text-shimmer';
 import ReactMarkdown from 'react-markdown';
 import { useState } from 'react';
+import { MessageFeedback } from '@/components/MessageFeedback';
+
+interface StepData {
+    name: string;
+    text: string;
+    status: 'running' | 'completed';
+}
+
+type EnhancedMessage = Message & {
+    steps?: StepData[];
+};
 
 interface ChatMessageProps {
-    message: Message;
+    message: EnhancedMessage;
     isStreaming?: boolean;
     isFirst?: boolean;
 }
@@ -39,20 +50,22 @@ export function ChatMessage({ message, isStreaming, isFirst }: ChatMessageProps)
 
     // Render assistant response
     if (isAssistant) {
-        const content =
-            typeof message.content === 'string'
-                ? message.content
-                : Array.isArray(message.content)
-                    ? message.content
-                        .filter((item: any) => item.type === 'text')
-                        .map((item: any) => item.text)
-                        .join('')
-                    : '';
+        let content = '';
+        if (message.content) {
+            if (typeof message.content === 'string') {
+                content = message.content;
+            } else if (Array.isArray(message.content)) {
+                content = (message.content as Array<{ type: string; text: string }>)
+                    .filter((item) => item.type === 'text')
+                    .map((item) => item.text)
+                    .join('');
+            }
+        }
 
         return (
             <div className="max-w-3xl mx-auto px-4 py-6">
                 {/* Steps Timeline */}
-                {(message as any).steps && (message as any).steps.length > 0 && (
+                {message.steps && message.steps.length > 0 && (
                     <div className="mb-8">
                         <div
                             className="flex items-center gap-2 mb-4 cursor-pointer hover:opacity-80"
@@ -60,14 +73,14 @@ export function ChatMessage({ message, isStreaming, isFirst }: ChatMessageProps)
                         >
                             <div className="h-2 w-2 rounded-full bg-teal-500 animate-pulse" />
                             <span className="text-sm font-medium text-gray-900">
-                                {isStepsExpanded ? 'Hide steps' : `View ${(message as any).steps.length} steps`}
+                                {isStepsExpanded ? 'Hide steps' : `View ${message.steps.length} steps`}
                             </span>
                             <ChevronDown className={`h-4 w-4 text-gray-400 transition-transform ${isStepsExpanded ? 'rotate-180' : ''}`} />
                         </div>
 
                         {isStepsExpanded && (
                             <div className="relative ml-1 mt-2">
-                                {(message as any).steps.map((step: any, idx: number) => {
+                                {message.steps.map((step, idx) => {
                                     // Determine icon based on step name
                                     let Icon = List;
 
@@ -79,7 +92,7 @@ export function ChatMessage({ message, isStreaming, isFirst }: ChatMessageProps)
                                         Icon = FileText;
                                     }
 
-                                    const isLast = idx === (message as any).steps.length - 1;
+                                    const isLast = idx === message.steps!.length - 1;
 
                                     return (
                                         <div key={idx} className="relative pl-8 pb-6 last:pb-2">
@@ -151,6 +164,11 @@ export function ChatMessage({ message, isStreaming, isFirst }: ChatMessageProps)
                         <ReactMarkdown>{content}</ReactMarkdown>
                     </div>
                 </div>
+
+                {/* Feedback component - shown only when message is complete */}
+                {!isStreaming && content && (
+                    <MessageFeedback messageContent={content} />
+                )}
             </div>
         );
     }
